@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { configValidationSchema } from './config.schema';
+import { ProductModule } from './product/product.module';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
@@ -28,7 +30,10 @@ import { configValidationSchema } from './config.schema';
         };
       },
     }),
+
     UsersModule,
+    ProductModule,
+    OrdersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
