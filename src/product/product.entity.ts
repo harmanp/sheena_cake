@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Order } from 'src/orders/order.entity';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Product {
@@ -19,6 +26,9 @@ export class Product {
 
   @Column()
   price: string;
+
+  @OneToMany(() => Order, (order) => order.product)
+  orders: Order;
 
   @Column({ default: true })
   isActive: boolean;

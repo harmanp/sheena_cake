@@ -1,5 +1,13 @@
 import { Product } from 'src/product/product.entity';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from 'src/users/user.entity';
+
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Order {
@@ -15,8 +23,11 @@ export class Order {
   @Column()
   quantity: number;
 
-  @OneToMany((type) => Product, (product) => product.order)
+  @ManyToOne(() => Product, (product) => product.orders)
   product: Product[];
+
+  @ManyToOne(() => User, (user) => user.orders)
+  user: User;
 
   @Column({ default: true })
   isActive: boolean;
